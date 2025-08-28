@@ -16,28 +16,32 @@
         }
         .login-container {
             background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 300px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
             text-align: center;
+            box-sizing: border-box;
         }
         .login-container input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
         }
         .login-container button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         .login-container button:hover {
             background-color: #0056b3;
@@ -46,7 +50,8 @@
             font-size: 14px;
             color: #007bff;
             text-decoration: none;
-            display: none; /* Başlangıçta gizle */
+            display: inline-block;
+            margin-top: 10px;
         }
         .forgot-password:hover, .signup-link:hover {
             text-decoration: underline;
@@ -54,7 +59,12 @@
         .error-message {
             color: red;
             font-size: 14px;
-            display: none; /* Başlangıçta gizle */
+            display: none;
+            margin-top: 10px;
+        }
+        .signup-link {
+            display: block;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -62,19 +72,24 @@
 
     <div class="login-container">
         <h2>Giriş Yap</h2>
+        
         <!-- Kullanıcı Adı Input -->
         <input type="text" id="username" placeholder="Kullanıcı Adı" required>
+        
         <!-- Şifre Input -->
         <input type="password" id="password" placeholder="Şifre" required>
-        <!-- Hata mesajı -->
+        
+        <!-- Hata Mesajı -->
         <div id="error-message" class="error-message">Şifre yanlış! Lütfen tekrar deneyin.</div>
+        
         <!-- Giriş Yap Butonu -->
         <button onclick="login()">Giriş Yap</button>
-        <br>
-        <!-- Şifremi Unuttum Linki -->
-        <a href="#" class="forgot-password" id="forgot-password" onclick="showForgotPassword()">Şifremi Unuttum</a>
+
         <!-- Kayıt Ol Linki -->
         <a href="signup.html" class="signup-link" id="signup-link">Kayıt Ol</a>
+
+        <!-- Şifremi Unuttum Linki -->
+        <a href="#" class="forgot-password" id="forgot-password" onclick="showForgotPassword()" style="display: none;">Şifremi Unuttum</a>
     </div>
 
     <script>
