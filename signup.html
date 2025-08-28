@@ -66,11 +66,7 @@
       display: flex;
       justify-content: center;
     }
-  </style>
-  <!-- Google reCAPTCHA script -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-</head>
-<body>
+
   <div class="signup-box">
     <h2>Kayıt Ol</h2>
     <form action="#" method="POST" onsubmit="return checkCaptcha()">
@@ -82,7 +78,7 @@
       <!-- reCAPTCHA kutusu -->
       <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
       
-      <button type="submit">Kayıt Ol</button>
+      <a href="login.html">Kayıt Ol</a></p>
     </form>
     <p>Zaten hesabın var mı? <a href="login.html">Giriş yap</a></p>
   </div>
