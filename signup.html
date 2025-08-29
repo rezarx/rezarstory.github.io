@@ -119,8 +119,9 @@
         }
         
         if (isValid) {
-            alert('Kayıt başarılı!');
-            // Burada form verilerini işleyebilirsiniz
+            // Form doğrulandıysa, kullanıcıyı giriş sayfasına yönlendir
+            alert('Kayıt başarılı! Giriş yapabilirsiniz.');
+            window.location.href = 'login.html';  // Burada 'login.html' giriş sayfanızın adı olmalı.
         }
     });
 </script>
