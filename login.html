@@ -53,6 +53,18 @@
             color: red;
             font-size: 14px;
         }
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .links a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -70,6 +82,12 @@
 
         <button type="submit">Giriş Yap</button>
     </form>
+
+    <!-- Bağlantılar -->
+    <div class="links">
+        <a href="register.html">Kayıt Ol</a> <!-- Kayıt sayfasına yönlendir -->
+        <a href="forgot-password.html">Şifrenizi mi unuttunuz?</a> <!-- Şifreyi unuttum sayfasına yönlendir -->
+    </div>
 </div>
 
 <script>
@@ -103,11 +121,16 @@
         }
 
         if (isValid) {
-            // Burada giriş doğrulaması yapılabilir (örneğin, server tarafında)
+            // Burada, giriş doğrulama yapılabilir (örneğin, server tarafında)
 
-            // Başarılı giriş, kullanıcıyı ana sayfaya yönlendir
-            alert('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz.');
-            window.location.href = 'index.html';  // Ana sayfa URL'si
+            // Kullanıcı adı veya şifre yanlış olduğunda gösterilecek mesaj
+            if (email !== 'test@example.com' || password !== 'password123') {
+                alert('E-posta veya şifre hatalı. Lütfen tekrar deneyin.');
+            } else {
+                // Başarılı giriş, kullanıcıyı ana sayfaya yönlendir
+                alert('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz.');
+                window.location.href = 'index.html';  // Ana sayfa URL'si
+            }
         }
     });
 </script>
