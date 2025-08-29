@@ -49,10 +49,6 @@
         button:hover {
             background-color: #45a049;
         }
-        .error {
-            color: red;
-            font-size: 14px;
-        }
     </style>
 </head>
 <body>
@@ -62,67 +58,33 @@
     <form id="registrationForm">
         <label for="username">Kullanıcı Adı</label>
         <input type="text" id="username" name="username" required>
-        <span id="usernameError" class="error"></span>
 
         <label for="email">E-posta</label>
         <input type="email" id="email" name="email" required>
-        <span id="emailError" class="error"></span>
 
         <label for="password">Şifre</label>
         <input type="password" id="password" name="password" required>
-        <span id="passwordError" class="error"></span>
 
         <button type="submit">Kayıt Ol</button>
     </form>
 </div>
 
 <script>
-    // Formu kontrol et
     document.getElementById('registrationForm').addEventListener('submit', function(event) {
         event.preventDefault();
-        
-        let isValid = true;
-        
-        // Kullanıcı Adı Kontrolü: Geçersiz karakter yok
+
+        // Kullanıcı bilgilerini al
         const username = document.getElementById('username').value;
-        const usernameError = document.getElementById('usernameError');
-        const invalidUsernames = ['admin', 'root', 'administrator'];
-        
-        if (invalidUsernames.includes(username)) {
-            usernameError.textContent = 'Bu kullanıcı adı geçersiz.';
-            isValid = false;
-        } else {
-            usernameError.textContent = '';
-        }
-        
-        // E-posta Kontrolü: Geçerli e-posta olmalı
         const email = document.getElementById('email').value;
-        const emailError = document.getElementById('emailError');
-        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        
-        if (!emailPattern.test(email)) {
-            emailError.textContent = 'Geçerli bir e-posta adresi giriniz.';
-            isValid = false;
-        } else {
-            emailError.textContent = '';
-        }
-        
-        // Şifre Kontrolü: En az 8 karakter olmalı
         const password = document.getElementById('password').value;
-        const passwordError = document.getElementById('passwordError');
-        
-        if (password.length < 8) {
-            passwordError.textContent = 'Şifre en az 8 karakter olmalı.';
-            isValid = false;
-        } else {
-            passwordError.textContent = '';
-        }
-        
-        if (isValid) {
-            // Form doğrulandıysa, kullanıcıyı giriş sayfasına yönlendir
-            alert('Kayıt başarılı! Giriş yapabilirsiniz.');
-            window.location.href = 'login.html';  // Burada 'login.html' giriş sayfanızın adı olmalı.
-        }
+
+        // Bu bilgileri localStorage'a kaydet (Gerçek uygulamada backend kullanılmalı)
+        localStorage.setItem('username', username);
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+
+        alert('Kayıt başarılı! Giriş yapabilirsiniz.');
+        window.location.href = 'login.html'; // Kayıt sonrası giriş sayfasına yönlendir
     });
 </script>
 
