@@ -7,124 +7,110 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
             background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
-        .login-container {
-            background-color: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            width: 350px;
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
             text-align: center;
-            box-sizing: border-box;
+            margin-bottom: 20px;
         }
-        .login-container input {
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input {
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
+            padding: 10px;
+            margin: 10px 0 20px;
             border: 1px solid #ccc;
-            border-radius: 8px;
-            box-sizing: border-box;
+            border-radius: 4px;
             font-size: 16px;
         }
-        .login-container button {
+        button {
             width: 100%;
-            padding: 12px;
-            background-color: #007bff;
+            padding: 10px;
+            background-color: #4CAF50;
             color: white;
-            border: none;
-            border-radius: 8px;
             font-size: 16px;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
         }
-        .login-container button:hover {
-            background-color: #0056b3;
+        button:hover {
+            background-color: #45a049;
         }
-        .forgot-password, .signup-link {
-            font-size: 14px;
-            color: #007bff;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-        }
-        .forgot-password:hover, .signup-link:hover {
-            text-decoration: underline;
-        }
-        .error-message {
+        .error {
             color: red;
             font-size: 14px;
-            display: none;
-            margin-top: 10px;
-        }
-        .signup-link {
-            display: block;
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="login-container">
-        <h2>Giriş Yap</h2>
+<div class="container">
+    <h2>Giriş Yap</h2>
+    <form id="loginForm">
+        <label for="email">E-posta</label>
+        <input type="email" id="email" name="email" required>
+        <span id="emailError" class="error"></span>
+
+        <label for="password">Şifre</label>
+        <input type="password" id="password" name="password" required>
+        <span id="passwordError" class="error"></span>
+
+        <button type="submit">Giriş Yap</button>
+    </form>
+</div>
+
+<script>
+    // Formu kontrol et
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let isValid = true;
         
-        <!-- Kullanıcı Adı Input -->
-        <input type="text" id="username" placeholder="Kullanıcı Adı" required>
-        
-        <!-- Şifre Input -->
-        <input type="password" id="password" placeholder="Şifre" required>
-        
-        <!-- Hata Mesajı -->
-        <div id="error-message" class="error-message">Şifre yanlış! Lütfen tekrar deneyin.</div>
-        
-        <!-- Giriş Yap Butonu -->
-        <button onclick="login()">Giriş Yap</button>
+        // E-posta Kontrolü: Geçerli e-posta formatı
+        const email = document.getElementById('email').value;
+        const emailError = document.getElementById('emailError');
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
-        <!-- Kayıt Ol Linki -->
-        <a href="signup.html" class="signup-link" id="signup-link">Kayıt Ol</a>
-
-        <!-- Şifremi Unuttum Linki -->
-        <a href="#" class="forgot-password" id="forgot-password" onclick="showForgotPassword()" style="display: none;">Şifremi Unuttum</a>
-    </div>
-
-    <script>
-        // Varsayılan kullanıcı adı ve şifre
-        const correctUsername = "user";
-        const correctPassword = "password123"; // Burada doğru şifreyi tanımla
-
-        function login() {
-            // Kullanıcı adı ve şifreyi al
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-
-            // Hata mesajı ve yönlendirmeler için elementler
-            const errorMessage = document.getElementById("error-message");
-            const forgotPasswordLink = document.getElementById("forgot-password");
-            const signupLink = document.getElementById("signup-link");
-
-            if (username === correctUsername && password === correctPassword) {
-                // Başarılı giriş durumunda, yönlendirme
-                alert("Başarıyla giriş yaptınız!");
-                window.location.href = "dashboard.html"; // Kullanıcıyı ana sayfaya yönlendirebilirsiniz.
-            } else {
-                // Hata durumunda mesaj göster ve bağlantıları güncelle
-                errorMessage.style.display = "block";
-                forgotPasswordLink.style.display = "inline";
-                signupLink.style.display = "none"; // Kayıt ol bağlantısını gizle
-            }
+        if (!emailPattern.test(email)) {
+            emailError.textContent = 'Geçerli bir e-posta adresi giriniz.';
+            isValid = false;
+        } else {
+            emailError.textContent = '';
         }
 
-        function showForgotPassword() {
-            // Şifremi unuttum bağlantısına tıklandığında yapılacak işlemler
-            alert("Şifremi unuttum işlemleri için yönlendiriliyorsunuz...");
-            window.location.href = "forgot-password.html"; // Şifremi unuttum sayfasına yönlendir
+        // Şifre Kontrolü: En az 8 karakter olmalı
+        const password = document.getElementById('password').value;
+        const passwordError = document.getElementById('passwordError');
+
+        if (password.length < 8) {
+            passwordError.textContent = 'Şifre en az 8 karakter olmalı.';
+            isValid = false;
+        } else {
+            passwordError.textContent = '';
         }
-    </script>
+
+        if (isValid) {
+            // Burada giriş doğrulaması yapılabilir (örneğin, server tarafında)
+
+            // Başarılı giriş, kullanıcıyı ana sayfaya yönlendir
+            alert('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz.');
+            window.location.href = 'index.html';  // Ana sayfa URL'si
+        }
+    });
+</script>
 
 </body>
 </html>
